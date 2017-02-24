@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Login</title>
+	<link rel="icon" href="icon.jpg">
+	<link rel="stylesheet" href="./login.css">
+	<style>
+		.container{
+			/*width:350px;
+			height:390px; */
+			text-align:center;
+			/*background-color:rgba(220,53,34,0.65); */
+			margin:0 auto;
+			margin-top:125px;
+			border-radius:6px;
+			animation-name: bring_forth;
+	    	animation-duration: 1s;
+				}
+		@keyframes bring_forth{
+			from {transform:translate3d(0,-550px,0)}
+			to {transform:translate3d(0,0,0)}
+				}
+		</style>
+</head>
+<body>
+	<div class="container">
+		<form name="admin" onsubmit="return validate_admin()">
+			<p>Welcome!</p>
+			<div class="form_input">
+				<input type="text" name="adminid" placeholder="Administrator ID" onkeypress="val_admin_id(event)">
+			</div>
+			<div class="form_input">
+				<input type="password" name="adminpassword" placeholder="Password">
+			</div>
+			<input type="submit" name="login" style="margin-top:20px" class="submit" value="LOGIN">
+		</form>
+		<div><p id="msg" style="color:#ff6666"></p></div>
+		<a href="Studentregistration.html" style="color:#F5F1F2">>>&nbsp;&nbsp;New User?? Register Now&nbsp;&nbsp;>></a><br><br>
+		<a href="forgotadminpassword.html" style="color:#F5F1F2">&lt;&lt;&nbsp;&nbsp;Forgot Password&nbsp;&nbsp;<<</a><br><br>
+		<a href="Homepage.html" style="color:#F5F1F2">&lt;&lt;&nbsp;&nbsp;Student Login&nbsp;&nbsp;>></a><br>
+	</div>
+	<script>
+		function validate_admin(){
+			var adminid=document.admin.adminid.value;
+			var adminpassword=document.admin.adminpassword.value;
+			if(adminid=="" || adminid==null){
+				document.getElementById("msg").innerHTML = "Admin ID can't be blank.!";
+				return false;
+				}
+			else if(adminpassword=="" || adminpassword==null || adminpassword.length<8){
+				document.getElementById("msg").innerHTML = "Password must be of minimum length 8.!";
+				return false;
+				}
+			}
+		function val_admin_id(){
+			if(event.which>=48 && event.which<=57){
+				event.preventDefault(event);
+			}
+		}
+	</script>
+</body>
+</html>

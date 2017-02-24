@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Registration</title>
+	<link rel="stylesheet" href="./studentregistration.css">
+	<link rel="icon" href="icon.jpg">
+</head>
+<body>
+	<nav>
+		<div id="navbtn" style="text-align: center">
+			<div class="nav_buttons" id="home_tab" onclick="location.href = 'Homepage.html';">Student Login</a></div>
+			<div class="nav_buttons" id="stu" onclick="student()">Student Information</div>
+			<div class="nav_buttons" id="par" onclick="parent()">Guardian Information</div>
+			<div class="nav_buttons" id="ac" onclick="academic()">Academic Information</div>
+			<div class="nav_buttons" id="admin_login" onclick="location.href = 'admin.html'">Admin Login</div>
+		</div>
+	</nav>
+	<div>
+		<form id="form" name="reg" style="text-align: center; margin-top: 50px; font-size: 20px; color: white">
+			<div id="split1">
+				<div style="margin:20px">WELCOME TO STUDENT REGISTRATION FORM</div>
+				<div>*FIRST NAME OF THE STUDENT:<input type="text" name="studentfname" class="inp" onkeypress="validate_name(event)"></div>
+				<div>*LAST NAME OF THE STUDENT:<input type="text" name="studentlname" class="inp" onkeypress="validate_name(event)"></div>
+				<div><input type="radio" name="gender" checked><span style="color:white" class="inp">MALE</span><input type="radio" name="gender"><span style="color:white"class="inp">FEMALE</span></div>
+				<div>*STUDENT'S REGISTRATION NUMBER:<input type="text" name="studentid" class="inp" onkeypress="validate_number(event)"></div>
+				<div>*STUDENT'S AGE:<input type="text" name="studentage" class="inp" onkeypress="validate_number(event)"></div>
+				<div>*STUDENTS BARNCH:
+					<select name="branch" style="text-align: center;margin:10px;cursor:pointer; font-size: 20px; width:230px;background: transparent;color:white">
+						<option value="non" style="color:black">Select Your Branch</option>
+						<option value="ME" style="color:black">Mechanical Engineering</option>
+						<option value="CSE" style="color:black">Computer Science Engineering</option>
+						<option value="CE" style="color:black">Civil Engineering</option>
+						<option value="CHE" style="color:black">Chemical Engineering</option>
+						<option value="EE" style="color:black">Electrical Engineering</option>
+						<option value="ECE" style="color:black">Electronics and Communication Engineering</option>
+						<option value="IT" style="color:black">Information Technology</option>
+						<option value="BT" style="color:black">Biotechnology</option>
+					</select>
+				</div>
+				<div>*STUDENT'S ROLL NUMBER:<input type="text" name="studentrollnumber" class="inp"></div>
+				<div>*STUDENT'S MOBILE NUMBER:<input type="text" name="studentmobilenumber" class="inp" onkeypress="validate_number(event)"></div>
+				<div>*STUDENT'S e-MAIL ID:<input type="text" name="studentemailid" class="inp"></div>
+				<div>*STUDENT'S PRESENT ADDRESS Line 1:<input type="text" name="studentaddr1" class="inp"></div>
+				<div>*STUDENT'S PRESENT ADDRESS Line 2:<input type="text" name="studentaddr2" class="inp"></div>
+				<div>*CREATE PASSWORD:<input type="password" name="createpassword" class="inp"></div>
+				<div>*CONFIRM PASSWORD:<input type="password" name="confirmpassword" class="inp"></div>
+				<div>*SELECT RECOVERY SECURITY QUESTION:
+					<select name="securityquestion" style="text-align: center;cursor:pointer;margin:10px; font-size: 20px; width:230px;background: transparent;color:white">
+						<option value="non" style="color:black">Select Security Question</option>
+						<option value="que1" style="color:black">What was your childhood nickname?</option>
+						<option value="que2" style="color:black">What is the name of your favorite childhood friend?</option>
+						<option value="que3" style="color:black">In what city or town did your mother and father meet?</option>
+						<option value="que4" style="color:black">What is your favorite team?</option>
+						<option value="que5" style="color:black">What is your favorite movie?</option>
+						<option value="que6" style="color:black">What was your favorite sport in high school?</option>
+						<option value="que7" style="color:black">What was the name of the hospital where you were born?</option>
+						<option value="que8" style="color:black">What was the last name of your third grade teacher?</option>
+					</select>
+				</div>
+				<div>
+					<div>*ANSWER FOR SECURITY QUESTION:<input type="text" name="securityanswer" class="inp" onkeypress="validate_name(event)"></div>
+				</div>
+			</div>
+			<div id="split2" style="display:none">
+				<div style="margin:20px">GAURDIAN DETAILS</div>
+				<div>*FIRST NAME OF THE GUARDIAN:<input type="text" name="guardianfname" class="inp"onkeypress="validate_name(event)"></div>
+				<div>*LAST NAME OF THE GUARDIAN:<input type="text" name="guardianlname" class="inp"onkeypress="validate_name(event)"></div>
+				<div>*RELATION WITH STUDENT:
+					<select name="relation" style="text-align: center;margin:10px; font-size: 20px;background: transparent;width:230px;cursor:pointer;color:white">
+						<option value="father" style="color:black">Father</option>
+						<option value="mother" style="color:black">Mother</option>
+						<option value="other" style="color:black">Other</option>
+					</select>
+				</div>
+				<div>*GUARDIAN'S MOBILE NUMBER:<input type="text" name="guardianmobilenumber" class="inp" onkeypress="validate_number(event)"></div>
+				<div>*GUARDIAN'S e-MAIL ID:<input type="text" name="guardianemailid" class="inp"></div>
+				<div>*GUARDIAN'S PRESENT ADDRESS Line 1:<input type="text" name="guardianaddr1" class="inp"></div>
+				<div>GUARDIAN'S PRESENT ADDRESS Line 2:<input type="text" name="guardianaddr2" class="inp"></div>
+			</div>
+			<div id="split3" style="display:none">
+				<div style="margin:20px">ACADEMIC DETAILS</div>
+				<div>*STUDENT'S 10<sup>TH</sup> BOARD:<input type="text" name="student10board" class="inp" onkeypress="validate_board(event)"></div>
+				<div>*STUDENT'S 10<sup>TH</sup> YEAR OF PASSING:<input type="text" name="student10yop" class="inp" onkeypress="validate_number(event)"></div>
+				<div>*STUDENT'S 10<sup>TH</sup> PERCENTAGE:<input type="text" name="student10percentage" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>*STUDENT'S 12<sup>TH</sup> BOARD:<input type="text" name="student12board" class="inp"onkeypress="validate_board(event)"></div>
+				<div>*STUDENT'S 12<sup>TH</sup> YEAR OF PASSING:<input type="text" name="student12yop" class="inp" onkeypress="validate_number*STUDENT'S 12<sup>TH</sup> PERCENTAGE:<input type="text" name="student12percentage" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>*STUDENT'S 1<sup>ST</sup> SEMESER SGPA:<input type="text" name="student1sgpa" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>*STUDENT'S 2<sup>ND</sup> SEMESER SGPA:<input type="text" name="student2sgpa" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>*STUDENT'S 3<sup>RD</sup> SEMESER SGPA:<input type="text" name="student3sgpa" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>*STUDENT'S 4<sup>TH</sup> SEMESER SGPA:<input type="text" name="student4sgpa" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>*STUDENT'S 5<sup>TH</sup> SEMESER SGPA:<input type="text" name="student5sgpa" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>*STUDENT'S 6<sup>TH</sup> SEMESER SGPA:<input type="text" name="student6sgpa" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>*STUDENT'S 7<sup>TH</sup> SEMESER SGPA:<input type="text" name="student7sgpa" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>*STUDENT'S 8<sup>TH</sup> SEMESER SGPA:<input type="text" name="student8sgpa" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>STUDENT'S OVERALL CGPA:<input type="text" name="studentcgpa" class="inp" onkeypress="validate_cg(event)"></div>
+				<div>SKILLS:<input type="text" name="studentskills" class="inp" onkeypress="validate_name(event)"></div>
+				<div><input id="fi" type="button" value="Register&nbsp;&nbsp;>>" onclick="final()"/></div>
+			</div>
+		</form>
+		<div>
+			<p style="color:orange; text-align: center; font-size: 20px">* Marked fields are Required</p>
+			<p id="note" style="color:#ff3333; text-align: center; font-size: 20px"></p>
+		</div>
+		<div style="margin:50px; margin-top: 10px">
+			<div class="nav2" style="float:left" onclick="previous()" id="p"><b>&lt;&lt;</b><span style="letter-spacing: 2px">Previous</span></div>
+			<div class="nav2" style="float:right" onclick="next()" id="n"><span style="letter-spacing: 2px">Next <b>&gt;&gt;</b></span></div>
+		</div>
+	</div>
+	<script>
+		var split=1,st=0,pa=0;
+		function next(){
+			if(split==1){
+				var studentfname=document.reg.studentfname.value;
+				var studentlname=document.reg.studentlname.value;
+				var studentid=document.reg.studentid.value;
+				var studentage=document.reg.studentage.value;
+				var branch=document.reg.branch.value;
+				var studentrollnumber=document.reg.studentrollnumber.value;
+				var studentmobilenumber=document.reg.studentmobilenumber.value;
+				var x=document.reg.studentemailid.value;
+				var atposition=x.indexOf("@");  
+				var dotposition=x.lastIndexOf("."); 
+				var studentaddr1=document.reg.studentaddr1.value;
+				var createpassword=document.reg.createpassword.value;
+				var confirmpassword=document.reg.confirmpassword.value;
+				var securityquestion=document.reg.securityquestion.value;
+				var securityanswer=document.reg.securityanswer.value;
+				if(studentfname=="" || studentfname== null){
+					document.getElementById("note").innerHTML="Student First Name Can't Blank";
+					// alert(typeof document.reg.studentfname.value);
+					return false;
+						}
+				else if(studentlname=="" || studentlname== null){
+					document.getElementById("note").innerHTML="Student Last Name Can't Blank";
+					return false;
+						}
+				else if(isNaN(studentid) || studentid.length!=8){
+					document.getElementById("note").innerHTML="Student Registration is Invalid. It must be of length 8";
+					return false;
+						}
+				else if(isNaN(studentage) || studentage>=25 || studentage<=17){
+					document.getElementById("note").innerHTML="Student Age is Invalid. It must lie between 17 and 25";
+					return false;
+						}
+				else if(branch=="non"){
+					document.getElementById("note").innerHTML="Please select your Branch";
+					return false;
+						}
+				else if(studentrollnumber==""){
+					document.getElementById("note").innerHTML="Roll Number is Invalid";
+					return false;
+						}
+				else if(studentmobilenumber=="" || isNaN(studentmobilenumber) || studentmobilenumber.length!=10){
+					document.getElementById("note").innerHTML="Mobile Number is Invalid. Mobile number must be of length 10";
+					return false;
+						}
+				else if(x==""){
+					document.getElementById("note").innerHTML="Please enter your E-Mail id";
+					return false;
+						}
+				else if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+  						document.getElementById("note").innerHTML="Please enter a valid e-mail address";  
+  						return false;  
+  						}
+				else if(studentaddr1=="" || studentaddr1==null){
+					document.getElementById("note").innerHTML="Student Address Line Cant Blank";
+					return false;
+						}
+				else if(createpassword=="" || createpassword==null){
+					document.getElementById("note").innerHTML="Student Create Password Can't Blank";
+					return false;
+						}
+				else if(confirmpassword=="" || confirmpassword==null){
+					document.getElementById("note").innerHTML="Student Confirm Password Can't Blank";
+					return false;
+						}
+				else if(createpassword!=confirmpassword){
+					document.getElementById("note").innerHTML="Student Passwords are not matching!!";
+					return false;
+						}
+				else if(securityquestion=="non"){
+					document.getElementById("note").innerHTML="Please Select Security Question.!!";
+					return false;
+						}
+				else if(securityanswer==""){
+					document.getElementById("note").innerHTML="Security Answer is not Valid.!!";
+					return false;
+						}
+				document.getElementById("split1").style.display="none";
+				document.getElementById("split2").style.display="block";
+				document.getElementById("split3").style.display="none";
+				split=2;
+				document.getElementById("stu").style.background= "transparent";
+				document.getElementById("par").style.background= "#00ff00";
+				document.getElementById("ac").style.background= "transparent";
+				document.getElementById("p").style.background= "#00e600";
+				document.getElementById("n").style.background= "#00e600";
+				document.getElementById("p").style.cursor= "pointer";
+				document.getElementById("n").style.cursor= "pointer";
+				document.getElementById("note").innerHTML="";
+				st=1;
+				pa=0;
+				return true;
+					}	
+			else if(split==2){
+				var guardianfname=document.reg.guardianfname.value;
+				var guardianlname=document.reg.guardianlname.value;
+				var guardianmobilenumber=document.reg.guardianmobilenumber.value;
+				var x=document.reg.guardianemailid.value;
+				var atposition=x.indexOf("@");  
+				var dotposition=x.lastIndexOf(".");  
+				var guardianaddr1=document.reg.guardianaddr1.value;
+				if(guardianfname==""){
+					document.getElementById("note").innerHTML="Guardian First Name Can't Blank";
+					return false;
+						}
+				if(guardianlname==""){
+					document.getElementById("note").innerHTML="Guardian Last Name Can't Blank";
+					return false;
+						}
+				else if(guardianmobilenumber=="" || isNaN(guardianmobilenumber) || guardianmobilenumber.length!=10){
+					document.getElementById("note").innerHTML="Mobile Number is Invalid. Mobile number must be of length 10";
+					return false;
+						}
+				else if(x==""){
+					document.getElementById("note").innerHTML="Please enter your E-Mail id";
+					return false;
+						}
+				else if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+  						document.getElementById("note").innerHTML="Please enter a valid e-mail address";  
+  						return false;  
+  						}
+				else if(guardianaddr1=="" || guardianaddr1==null){
+					document.getElementById("note").innerHTML="Guardian Address Line Cant Blank";
+					return false;
+						}
+				pa=1;
+				document.getElementById("split2").style.display="none";
+				document.getElementById("split3").style.display="block";
+				document.getElementById("split1").style.display="none";
+				document.getElementById("n").style.background= "transparent";
+				document.getElementById("p").style.background= "#00e600";
+				document.getElementById("n").style.cursor= "context-menu";
+				document.getElementById("p").style.cursor= "pointer";
+				split=3;
+				document.getElementById("stu").style.background= "transparent";
+				document.getElementById("par").style.background= "transparent";
+				document.getElementById("ac").style.background= "#00ff00";
+				document.getElementById("note").innerHTML="";
+					}
+				}
+		function final(){
+			var student10board=document.reg.student10board.value;
+			var student10yop=document.reg.student10yop.value;
+			var student10percentage=document.reg.student10percentage.value;
+			var student12board=document.reg.student12board.value;
+			var student12yop=document.reg.student12yop.value;
+			var student12percentage=document.reg.student12percentage.value;
+			var student1sgpa=document.reg.student1sgpa.value;
+			var student2sgpa=document.reg.student2sgpa.value;
+			var student3sgpa=document.reg.student3sgpa.value;
+			var student4sgpa=document.reg.student4sgpa.value;
+			var student5sgpa=document.reg.student5sgpa.value;
+			var student6sgpa=document.reg.student6sgpa.value;
+			var student7sgpa=document.reg.student7sgpa.value;
+			var student8sgpa=document.reg.student8sgpa.value;
+			var studentcgpa=document.reg.studentcgpa.value;
+			if(student10board==""){
+				document.getElementById("note").innerHTML="Your 10th Board is not valid. Try using Block letters.";
+				return false;
+					}
+			else if(student10yop=="" || student10yop.length!=4){
+				document.getElementById("note").innerHTML="Your 10th Year of passing is not valid";
+				return false;
+					}
+			else if(student10percentage=="" || student10percentage.length>5){
+				document.getElementById("note").innerHTML="Your 10th Percentage is not valid. Try using Block letters.";
+				return false;
+					}
+			else if(student12board==""){
+				document.getElementById("note").innerHTML="Your 12th Board is not valid";
+				return false;
+					}
+			else if(student12yop=="" || student12yop.length!=4){
+				document.getElementById("note").innerHTML="Your 12th Year of passing is not valid";
+					return false;
+					}
+			else if(student12percentage=="" || student12percentage.length>5){
+				document.getElementById("note").innerHTML="Your 12th Percentage is not valid.";
+				return false;
+					}
+			else if(student1sgpa=="" || student1sgpa.length>4){
+				document.getElementById("note").innerHTML="Your 1st Semester SGPA is not valid";
+				return false;
+					}
+			else if(student2sgpa=="" || student2sgpa.length>4){
+				document.getElementById("note").innerHTML="Your 2nd Semester SGPA is not valid";
+				return false;
+					}
+			else if(student3sgpa=="" || student3sgpa.length>4){
+				document.getElementById("note").innerHTML="Your 3rd Semester SGPA is not valid";
+				return false;
+					}
+			else if(student4sgpa=="" || student4sgpa.length>4){
+				document.getElementById("note").innerHTML="Your 4th Semester SGPA is not valid";
+				return false;
+					}
+			else if(student5sgpa=="" || student5sgpa.length>4){
+				document.getElementById("note").innerHTML="Your 5th Semester SGPA is not valid";
+				return false;
+					}
+			else if(student6sgpa=="" || student6sgpa.length>4){
+				document.getElementById("note").innerHTML="Your 6th Semester SGPA is not valid";
+				return false;
+					}
+			else if(student7sgpa=="" || student7sgpa.length>4){
+				document.getElementById("note").innerHTML="Your 7th Semester SGPA is not valid";
+				return false;
+					}
+			else if(student8sgpa=="" || student8sgpa.length>4){
+				document.getElementById("note").innerHTML="Your 8th Semester SGPA is not valid";
+				return false;
+					}
+			else if(st==0){
+				document.getElementById("note").innerHTML="It seems you have not validated Student Details!!. Try to validate by clicking 'next' button when you are on Student details block...";
+				return false;
+					}
+			else if(st==1 && pa==0){
+				document.getElementById("note").innerHTML="It seems you have not validated Guardian Details!!. Try to validate by clicking 'next' button when you are on Guardian details block...";
+				return false;
+					}
+			else if(st==1 && pa==1){
+				document.getElementById('form').submit();
+					}
+				}
+		function previous(){
+			if(split==3){
+				document.getElementById("split3").style.display="none";
+				document.getElementById("split2").style.display="block";
+				document.getElementById("split1").style.display="none";
+				document.getElementById("n").style.background= "#00e600";
+				document.getElementById("n").style.cursor= "pointer";
+				split=2;
+				pa=0;
+				document.getElementById("stu").style.background= "transparent";
+				document.getElementById("par").style.background= "#00ff00";
+				document.getElementById("ac").style.background= "transparent";
+				document.getElementById("note").innerHTML="";
+					}
+			else if(split==2){
+				document.getElementById("split2").style.display="none";
+				document.getElementById("split1").style.display="block";
+				document.getElementById("split3").style.display="none";
+				document.getElementById("p").style.background= "transparent";
+				document.getElementById("p").style.cursor= "context-menu";
+				document.getElementById("n").style.background= "#00e600";
+				document.getElementById("n").style.cursor= "pointer";
+				split=1;
+				st=0;
+				document.getElementById("stu").style.background= "#00ff00";
+				document.getElementById("par").style.background= "transparent";
+				document.getElementById("ac").style.background= "transparent";
+				document.getElementById("note").innerHTML="";
+					}
+			}
+		function validate_name(event){
+			if(!((event.which<=90 && event.which>=65) || (event.which<=122 && event.which>=97))){
+				event.preventDefault();
+					}
+			}
+		function validate_board(event){
+			if(!(event.which<=90 && event.which>=65)){
+				event.preventDefault();
+					}
+			}
+		function validate_number(event){
+			if(!(event.which<=58 && event.which>=47)){
+				event.preventDefault();
+					}
+			}
+		function validate_cg(event){
+			if(!(event.which<=58 && event.which>=46)){
+				event.preventDefault();
+					}
+			}
+
+		function student(){
+			document.getElementById("split2").style.display="none";
+			document.getElementById("split1").style.display="block";
+			document.getElementById("split3").style.display="none";
+			document.getElementById("p").style.background= "transparent";
+			document.getElementById("p").style.cursor= "context-menu";
+			document.getElementById("n").style.background= "#00e600";
+			document.getElementById("n").style.cursor= "pointer";
+			split=1;
+			st=0;
+			document.getElementById("stu").style.background= "#00ff00";
+			document.getElementById("par").style.background= "transparent";
+			document.getElementById("ac").style.background= "transparent";
+			document.getElementById("note").innerHTML="";
+				}
+		function parent(){
+			document.getElementById("split3").style.display="none";
+			document.getElementById("split2").style.display="block";
+			document.getElementById("split1").style.display="none";
+			document.getElementById("p").style.background= "#00e600";
+			document.getElementById("p").style.cursor= "pointer";
+			document.getElementById("n").style.background= "#00e600";
+			document.getElementById("n").style.cursor= "pointer";
+			split=2;
+			pa=0;
+			document.getElementById("stu").style.background= "transparent";
+			document.getElementById("par").style.background= "#00ff00";
+			document.getElementById("ac").style.background= "transparent";
+			document.getElementById("note").innerHTML="";
+				}
+		function academic(){
+			document.getElementById("split2").style.display="none";
+			document.getElementById("split3").style.display="block";
+			document.getElementById("split1").style.display="none";
+			document.getElementById("n").style.background= "transparent";
+			document.getElementById("n").style.cursor= "context-menu";
+			document.getElementById("p").style.background= "#00e600";
+			document.getElementById("p").style.cursor= "pointer";
+			split=3;
+			document.getElementById("stu").style.background= "transparent";
+			document.getElementById("par").style.background= "transparent";
+			document.getElementById("ac").style.background= "#00ff00";
+			document.getElementById("note").innerHTML="";
+				}
+	</script>
+</body>
+</html>
